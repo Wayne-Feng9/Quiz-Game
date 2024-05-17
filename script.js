@@ -1,3 +1,4 @@
+//Setup
 const questionContainer = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
@@ -7,7 +8,7 @@ const resultDiv = document.getElementById("result");
 
 let shuffledQuestions, currentQuestionIndex, score;
 
-
+//Questions
 const questions = [
   {
     question: "What is the capital of France?",
@@ -15,7 +16,7 @@ const questions = [
       { text: "London", correct: false },
       { text: "Vienna", correct: false },
       { text: "Paris", correct: true },
-      { text: "Florence", correct: false },
+      { text: "New York City", correct: false },
     ],
   },
   {
@@ -140,17 +141,17 @@ const questions = [
       answers: [
         { text: "Charles V", correct: false },
         { text: "Jesus", correct: false },
-        { text: "Mona Lisa", correct: false },
+        { text: "Superman", correct: false },
         { text: "David", correct: true },
       ],
   },
   {
-    question: "Which is a piece of art created by Michelangelo?",
+    question: "Who founded Apple?",
       answers: [
-        { text: "Charles V", correct: false },
-        { text: "Jesus", correct: false },
-        { text: "Mona Lisa", correct: false },
-        { text: "David", correct: true },
+        { text: "Elon Musk", correct: false },
+        { text: "Mr. Agustin", correct: false },
+        { text: "Bill Gates", correct: true },
+        { text: "Steve Jobs", correct: false },
       ],
   },
   {
@@ -162,10 +163,29 @@ const questions = [
         { text: "1986", correct: false },
       ],
   },
+  {
+    question: "What is a mitochondria?",
+      answers: [
+        { text: "A cell that makes you get sick", correct: false },
+        { text: "A part of the cell that breaks down food", correct: true },
+        { text: "A part of the cell that transports food", correct: false },
+        { text: "Yuan-Wei's pet rock", correct: false },
+      ],
+  },  
+  {
+    question: "Which is NOT a Mozart piece?",
+      answers: [
+        { text: "Clarinet Concerto", correct: false },
+        { text: "The Magic Flute", correct: false },
+        { text: "Don Giovanni", correct: false },
+        { text: "Moonlight Sonata", correct: true },
+      ],
+  },
 ];
 
 startQuiz();
 
+//Start quiz function
 function startQuiz() {
   score = 0;
   var audio = new Audio("suspenseful_music.mp3");
@@ -173,10 +193,10 @@ function startQuiz() {
   audio.play();
   questionContainer.style.display = "flex";
 
-  // Shuffle the questions
+  //Shuffle the questions
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
 
-  // Select only the first 10 questions
+  //Select only the first 10 questions
   shuffledQuestions = shuffledQuestions.slice(0, 10);
 
   currentQuestionIndex = 0;
@@ -246,4 +266,7 @@ function endQuiz() {
   restartButton.classList.remove("hide");
   resultDiv.classList.remove("hide");
   resultDiv.innerText = `Your final score: ${score} / ${shuffledQuestions.length}`;
+  var audio = new Audio("happy_ending_music.mp3");
+  audio.loop = false;
+  audio.play();
 }
